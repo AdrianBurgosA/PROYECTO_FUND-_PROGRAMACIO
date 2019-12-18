@@ -47,3 +47,36 @@ default:
 }while(opc!=4);
 
 }
+void mostrar(){
+printf("\n\n			MENU\n\n");
+printf("		1.- Crear Fichero\n");
+printf("		2.- Escribir en el fichero\n");
+printf(" 	        3.- Consultar el fichero\n");
+printf("		4.- Salir\n");
+printf("\n		INGRESE UNA OPCION:\n");	
+}
+
+void Crear(FILE *fp){
+	
+	fp = fopen("prueba.txt","a"); //Crea el archivo plano  nombre_archivo = fopen ("nombre.txt","a"), abrirá para escribir al final del archivo, si no existe lo crea
+	if((fp = fopen("prueba.txt","a"))==NULL){ //Restricción que nos validará la creación del archivo, si está  vacío no lanzará un error
+		printf("ERROR\n");
+		fclose(fp);//fclose(nombre) sirve para cerrar el archivo plano
+		exit(0);//En caso de que se lanzara un error, la ejecución terminará
+	}else{
+		printf("El fichero ha sido creado con exito\n");
+	}
+}
+
+void Escribir(FILE *fp, char cad[100]){
+fp = fopen("prueba.txt","w");//Se abre el archivo con tipo de apertura "2", abrir un archivo para escritura al final del contenido, si no existe se crea.
+fprintf(fp,"%s\n",cad);//Escribe la cadena ingresada anteriormente en el fichero
+fclose(fp);//Cierra el fichero
+}
+
+void Consultar (FILE *fp, char cad[100]){
+fp = fopen("prueba.txt","r");//Se abre el archivo con tipo de apertura "2", abrir un archivo para escritura al final del contenido, si no existe se crea.
+fscanf(fp,"%s",cad);//Lee la variable pedida directamente del fichero
+printf("\n %s",cad);//Muestra el valor de la variable consultada desde el ficher
+fclose(fp);//Cierra el fichero
+}
